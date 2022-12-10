@@ -2,13 +2,7 @@ import { NavLink } from "react-router-dom";
 
 // import logo from "./RecipePadLogo.png";
 
-const Navbar = ({
-  searchQuery,
-  setSearchQuery,
-  searchHandler,
-  inputField,
-  saveCount,
-}) => {
+const Navbar = ({ saveCount }) => {
   const navActive = ({ isActive }) => {
     return {
       color: isActive ? "#f43f5e" : null,
