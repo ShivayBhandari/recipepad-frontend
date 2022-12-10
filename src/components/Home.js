@@ -2,7 +2,17 @@ import Recipe from "./Recipe";
 import { CgSpinner } from "react-icons/cg";
 import FryingPan from "./FryingPan";
 
-const Home = ({ recipes, isLoading, errorMsg, emptyArray, stable }) => {
+const Home = ({
+  recipes,
+  isLoading,
+  errorMsg,
+  emptyArray,
+  stable,
+  searchQuery,
+  setSearchQuery,
+  searchHandler,
+  inputField,
+}) => {
   return (
     <div className="container mx-auto py-8 flex flex-wrap gap-10 justify-center">
       {!isLoading && !errorMsg && !emptyArray && recipes.length === 0 ? (
@@ -11,6 +21,18 @@ const Home = ({ recipes, isLoading, errorMsg, emptyArray, stable }) => {
           <FryingPan />
         </div>
       ) : null}
+
+      <form onSubmit={searchHandler}>
+        <input
+          ref={inputField}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          type="search"
+          required
+          placeholder="Search recipe..."
+          className="bg-white/75 p-3 px-8 lg:w-96 rounded-full outline-none shadow-lg shadow-rose-100 focus:shadow-rose-200 duration-300"
+        />
+      </form>
 
       {isLoading && (
         <p className="text-2xl">

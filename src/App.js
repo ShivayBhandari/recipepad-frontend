@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
+import IngredientSearch from "./components/IngredientSearch";
+import Login from "./components/Login";
 import RecipeItem from "./components/RecipeItem";
 import Favourites from "./components/Favourites";
 import NotFound from "./components/NotFound";
@@ -103,12 +105,16 @@ const App = () => {
                 recipes={recipes}
                 isLoading={isLoading}
                 errorMsg={errorMsg}
-                searchQuery={searchQuery}
                 emptyArray={emptyArray}
                 stable={stable}
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                searchHandler={searchHandler}
+                inputField={inputField}
               />
             }
           />
+          <Route path="ingredient-search" element={<IngredientSearch />} />
           <Route
             path="recipe-item/:id"
             element={
@@ -125,6 +131,8 @@ const App = () => {
             path="favourites"
             element={<Favourites savedItems={savedItems} />}
           />
+
+          <Route path="login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
