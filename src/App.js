@@ -3,10 +3,10 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import RecipeSearch from "./components/pages/RecipeSearch";
 import IngredientRecipeSearch from "./components/pages/IngredientRecipeSearch";
-import Login from "./components/Login";
+import Login from "./components/pages/Login";
 import RecipeItem from "./components/RecipeItem";
 import Favourites from "./components/Favourites";
-import NotFound from "./components/NotFound";
+import NotFound from "./components/pages/NotFound";
 import Footer from "./components/Footer";
 
 const App = () => {
