@@ -34,17 +34,35 @@ const RecipeSearch = () => {
     setStable("");
 
     setTimeout(() => {
-      fetch(`http://127.0.0.1:9000/recipesWithSearch?query=${searchQuery}`)
-        .then((res) => {
-          if (!res.ok) throw new Error("Something went wrong!");
-          return res.json();
-        })
-        .then((data) => {
-          if (data.results.length === 0) setEmptyArray("No recipe found!");
-          setRecipes(data.results);
-          setIsLoading(false);
-        })
-        .catch((err) => setErrorMsg(err.message));
+      var url;
+      if (searchQuery === "") {
+        url = "http://127.0.0.1:9000/recipesWithSearch";
+        fetch(url)
+          .then((res) => {
+            if (!res.ok) throw new Error("Something went wrong!");
+            return res.json();
+          })
+          .then((data) => {
+            if (data.recipes.length === 0) setEmptyArray("No recipe found!");
+            setRecipes(data.recipes);
+            setIsLoading(false);
+          })
+          .catch((err) => setErrorMsg(err.message));
+      } else {
+        url = `http://127.0.0.1:9000/recipesWithSearch?query=${searchQuery}`;
+
+        fetch(url)
+          .then((res) => {
+            if (!res.ok) throw new Error("Something went wrong!");
+            return res.json();
+          })
+          .then((data) => {
+            if (data.results.length === 0) setEmptyArray("No recipe found!");
+            setRecipes(data.results);
+            setIsLoading(false);
+          })
+          .catch((err) => setErrorMsg(err.message));
+      }
     }, 500);
 
     setSearchQuery("");
@@ -65,7 +83,7 @@ const RecipeSearch = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           type="search"
-          required
+          //required
           placeholder="Search recipe..."
           className="bg-white/75 p-3 px-8 lg:w-96 rounded-full outline-none shadow-lg shadow-rose-100 focus:shadow-rose-200 duration-300"
         />

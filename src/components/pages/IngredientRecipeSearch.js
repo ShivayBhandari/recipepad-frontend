@@ -34,17 +34,15 @@ const IngredientRecipeSearch = () => {
     setIngredientStable("");
 
     setTimeout(() => {
-      fetch(
-        `http://127.0.0.1:9000/recipesWithSearch?query=${ingredientSearchQuery}`
-      )
+      var url = `http://127.0.0.1:9000/recipesWithIngredients?ingredients=${ingredientSearchQuery}`;
+      fetch(url)
         .then((res) => {
           if (!res.ok) throw new Error("Something went wrong!");
           return res.json();
         })
         .then((data) => {
-          if (data.results.length === 0)
-            setIngredientEmptyArray("No recipe found!");
-          setIngredientRecipes(data.results);
+          if (data.length === 0) setIngredientEmptyArray("No recipe found!");
+          setIngredientRecipes(data);
           setIngredientIsLoading(false);
         })
         .catch((err) => setIngredientErrorMsg(err.message));
