@@ -109,14 +109,51 @@ const RecipeItem = ({ saveHandler, savedItems }) => {
               >
                 Go Back
               </button>
-              <a
+              {/* <a
                 href={recipe.spoonacularSourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-sky-400 text-sky-50 p-3 px-8 rounded-full uppercase shadow-lg shadow-sky-200 hover:bg-gray-600 hover:text-gray-50 hover:shadow-gray-300 duration-300"
               >
                 Get Directions
-              </a>
+              </a> */}
+            </div>
+            <div>
+              <span>
+                {recipe.vegetarian ? (
+                  <span className="bg-sky-400 text-sky-50 p-1 px-2 rounded-full">
+                    vegetarian
+                  </span>
+                ) : null}
+              </span>{" "}
+              <span>
+                {recipe.vegan ? (
+                  <span className="bg-sky-400 text-sky-50 p-1 px-2 rounded-full">
+                    vegan
+                  </span>
+                ) : null}
+              </span>{" "}
+              <span>
+                {recipe.glutenFree ? (
+                  <span className="bg-sky-400 text-sky-50 p-1 px-2 rounded-full">
+                    glutenfree
+                  </span>
+                ) : null}
+              </span>{" "}
+              <span>
+                {recipe.dairyFree ? (
+                  <span className="bg-sky-400 text-sky-50 p-1 px-2 rounded-full">
+                    dairyfree
+                  </span>
+                ) : null}
+              </span>{" "}
+              <span>
+                {recipe.veryHealthy ? (
+                  <span className="bg-sky-400 text-sky-50 p-1 px-2 rounded-full">
+                    veryhealthy
+                  </span>
+                ) : null}
+              </span>{" "}
             </div>
           </div>
           <div className="overflow-hidden flex justify-center items-center lg:h-96 rounded-xl">
