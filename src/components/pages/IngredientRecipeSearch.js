@@ -13,7 +13,10 @@ const IngredientRecipeSearch = () => {
   const [ingredientErrorMsg, setIngredientErrorMsg] = useState("");
   const [ingredientEmptyArray, setIngredientEmptyArray] = useState("");
   const [ingredientStable, setIngredientStable] = useState(
-    "Nothing to show, please search something!"
+    "Search within 2600+ ingredients"
+  );
+  const [ingredientStable2, setIngredientStable2] = useState(
+    "Just enter ingredients you have at home"
   );
 
   //const navigator = useNavigate();
@@ -32,6 +35,7 @@ const IngredientRecipeSearch = () => {
     setIngredientErrorMsg("");
     setIngredientEmptyArray("");
     setIngredientStable("");
+    setIngredientStable2("");
 
     setTimeout(() => {
       var url = `http://127.0.0.1:9000/recipesWithIngredients?ingredients=${ingredientSearchQuery}`;
@@ -59,21 +63,25 @@ const IngredientRecipeSearch = () => {
       ingredientRecipes.length === 0 ? (
         <div className="text-2xl lg:text-4xl text-center font-semibold text-rose-300 leading-normal">
           <p>{ingredientStable}</p>
-          <FryingPan />
+          <p className="text-lg">{ingredientStable2}</p>
         </div>
       ) : null}
 
-      <form onSubmit={ingredientSearchHandler}>
-        <input
-          ref={ingredientInputField}
-          value={ingredientSearchQuery}
-          onChange={(e) => setIngredientSearchQuery(e.target.value)}
-          type="search"
-          required
-          placeholder="Search recipe..."
-          className="bg-white/75 p-3 px-8 lg:w-96 rounded-full outline-none shadow-lg shadow-rose-100 focus:shadow-rose-200 duration-300"
-        />
-      </form>
+      <div className="container mx-auto py-8 flex flex-wrap gap-10 justify-center border-b-0">
+        <form onSubmit={ingredientSearchHandler}>
+          <input
+            ref={ingredientInputField}
+            value={ingredientSearchQuery}
+            onChange={(e) => setIngredientSearchQuery(e.target.value)}
+            type="search"
+            required
+            placeholder="Search recipe..."
+            className="bg-white/75 p-3 px-8 lg:w-96 rounded-full outline-none shadow-lg shadow-rose-100 focus:shadow-rose-200 duration-300"
+          />
+        </form>
+      </div>
+
+      <FryingPan />
 
       {ingredientIsLoading && (
         <p className="text-2xl">

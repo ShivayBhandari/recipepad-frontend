@@ -12,8 +12,9 @@ const RecipeSearch = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [emptyArray, setEmptyArray] = useState("");
-  const [stable, setStable] = useState(
-    "Nothing to show, please search something!"
+  const [stable, setStable] = useState("Search from 5000+ recipes");
+  const [stable2, setStable2] = useState(
+    "Cannot decide what to eat? Just search without entering anything"
   );
 
   //const navigator = useNavigate();
@@ -32,6 +33,7 @@ const RecipeSearch = () => {
     setErrorMsg("");
     setEmptyArray("");
     setStable("");
+    setStable2("");
 
     setTimeout(() => {
       var url;
@@ -73,21 +75,25 @@ const RecipeSearch = () => {
       {!isLoading && !errorMsg && !emptyArray && recipes.length === 0 ? (
         <div className="text-2xl lg:text-4xl text-center font-semibold text-rose-300 leading-normal">
           <p>{stable}</p>
-          <FryingPan />
+          <p className="text-lg">{stable2}</p>
         </div>
       ) : null}
 
-      <form onSubmit={searchHandler}>
-        <input
-          ref={inputField}
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          type="search"
-          //required
-          placeholder="Search recipe..."
-          className="bg-white/75 p-3 px-8 lg:w-96 rounded-full outline-none shadow-lg shadow-rose-100 focus:shadow-rose-200 duration-300"
-        />
-      </form>
+      <div className="container mx-auto py-8 flex flex-wrap gap-10 justify-center border-b-0">
+        <form onSubmit={searchHandler}>
+          <input
+            ref={inputField}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            type="search"
+            //required
+            placeholder="Search recipe..."
+            className="bg-white/75 p-3 px-8 lg:w-96 rounded-full outline-none shadow-lg shadow-rose-100 focus:shadow-rose-200 duration-300"
+          />
+        </form>
+      </div>
+
+      <FryingPan />
 
       {isLoading && (
         <p className="text-2xl">
