@@ -32,6 +32,7 @@ const RecipeItem = ({ saveHandler, savedItems }) => {
         })
         .catch((err) => setErrorMsg(err.message));
     }, 500);
+    // eslint-disable-next-line
   }, []);
 
   const timeFormatter = (time) => {
@@ -49,6 +50,7 @@ const RecipeItem = ({ saveHandler, savedItems }) => {
   useEffect(() => {
     if (!recipe) return;
     setHasBeenSaved(savedItems.some((item) => item.id === recipe.id));
+    // eslint-disable-next-line
   }, [recipe]);
 
   return (
@@ -110,6 +112,7 @@ const RecipeItem = ({ saveHandler, savedItems }) => {
               <a
                 href={recipe.spoonacularSourceUrl}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="bg-sky-400 text-sky-50 p-3 px-8 rounded-full uppercase shadow-lg shadow-sky-200 hover:bg-gray-600 hover:text-gray-50 hover:shadow-gray-300 duration-300"
               >
                 Get Directions
@@ -145,6 +148,15 @@ const RecipeItem = ({ saveHandler, savedItems }) => {
                     </span>{" "}
                   </p>
                 ))}
+              <br />
+              <h2 className="text-2xl lg:text-4xl flex items-center gap-3 font-medium mb-5">
+                <span className="text-rose-500">
+                  <GiKnifeFork />
+                </span>{" "}
+                Instructions:
+              </h2>
+              <br />
+              <p className="leading-loose">{recipe.instructions}</p>
             </div>
           </div>
         </div>
