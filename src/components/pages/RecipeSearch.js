@@ -10,6 +10,7 @@ const RecipeSearch = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [fryingPan, setFryingPan] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
   const [emptyArray, setEmptyArray] = useState("");
   const [stable, setStable] = useState("Search from 5000+ recipes");
@@ -29,6 +30,7 @@ const RecipeSearch = () => {
     //navigator("/");
 
     setIsLoading(true);
+    setFryingPan(false);
     setRecipes([]);
     setErrorMsg("");
     setEmptyArray("");
@@ -93,7 +95,7 @@ const RecipeSearch = () => {
         </form>
       </div>
 
-      <FryingPan />
+      {fryingPan ? <FryingPan /> : null}
 
       {isLoading && (
         <p className="text-2xl">
