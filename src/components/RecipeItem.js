@@ -7,6 +7,7 @@ import { CgSpinner } from "react-icons/cg";
 
 const RecipeItem = ({ saveHandler, savedItems }) => {
   const [recipe, setRecipe] = useState("");
+  const [recipeNutrients, setRecipeNutrients] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [hasBeenSaved, setHasBeenSaved] = useState(null);
@@ -19,16 +20,31 @@ const RecipeItem = ({ saveHandler, savedItems }) => {
     setIsLoading(true);
     setErrorMsg("");
     setRecipe("");
+    setRecipeNutrients("");
 
     setTimeout(() => {
       fetch(`http://127.0.0.1:9000/recipeInformation/${id}`)
         .then((res) => {
-          if (!res.ok) throw new Error("Something went wrongggg!");
+          if (!res.ok)
+            throw new Error(
+              "Something went wrong fetching recipe information!"
+            );
           return res.json();
         })
         .then((data) => {
           setRecipe(data);
           setIsLoading(false);
+        })
+        .catch((err) => setErrorMsg(err.message));
+
+      fetch(`http://127.0.0.1:9000/recipeNutrients/${id}`)
+        .then((res) => {
+          if (!res.ok)
+            throw new Error("Something went wrong fetching recipe nutrients!");
+          return res.json();
+        })
+        .then((data) => {
+          setRecipeNutrients(data);
         })
         .catch((err) => setErrorMsg(err.message));
     }, 500);
@@ -180,8 +196,8 @@ const RecipeItem = ({ saveHandler, savedItems }) => {
                   >
                     <TiTick className="inline-block" />
                     <span>
-                      {ing.amount && ing.amount}
-                      {ing.unit && ing.unit} {ing.name && ing.name}
+                      {ing.amount && ing.amount} {ing.unit && ing.unit}{" "}
+                      {ing.name && ing.name}
                     </span>{" "}
                   </p>
                 ))}
@@ -194,6 +210,30 @@ const RecipeItem = ({ saveHandler, savedItems }) => {
               </h2>
               <br />
               <p className="leading-loose">{recipe.instructions}</p>
+              <br />
+              <h2 className="text-2xl lg:text-4xl flex items-center gap-3 font-medium mb-5">
+                <span className="text-rose-500">
+                  <GiKnifeFork />
+                </span>{" "}
+                Plan Meal With Nutrients:
+              </h2>
+
+              <p className="leading-loose">
+                <TiTick className="inline-block" />
+                <span>Calories: {recipeNutrients.calories}</span>
+              </p>
+              <p className="leading-loose">
+                <TiTick className="inline-block" />
+                <span>Carbs: {recipeNutrients.carbs}</span>
+              </p>
+              <p className="leading-loose">
+                <TiTick className="inline-block" />
+                <span>Fat: {recipeNutrients.fat}</span>
+              </p>
+              <p className="leading-loose">
+                <TiTick className="inline-block" />
+                <span>Protein: {recipeNutrients.protein}</span>
+              </p>
             </div>
           </div>
         </div>
