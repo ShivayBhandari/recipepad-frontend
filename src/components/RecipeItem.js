@@ -140,21 +140,33 @@ const RecipeItem = ({ saveHandler, savedItems }) => {
                   <span className="bg-sky-400 text-sky-50 p-1 px-2 rounded-full">
                     vegetarian
                   </span>
-                ) : null}
+                ) : (
+                  <span className="bg-sky-400 text-sky-50 p-1 px-2 rounded-full">
+                    non-vegetarian
+                  </span>
+                )}
               </span>{" "}
               <span>
                 {recipe.vegan ? (
                   <span className="bg-sky-400 text-sky-50 p-1 px-2 rounded-full">
                     vegan
                   </span>
-                ) : null}
+                ) : (
+                  <span className="bg-sky-400 text-sky-50 p-1 px-2 rounded-full">
+                    non-vegan
+                  </span>
+                )}
               </span>{" "}
               <span>
                 {recipe.glutenFree ? (
                   <span className="bg-sky-400 text-sky-50 p-1 px-2 rounded-full">
                     glutenfree
                   </span>
-                ) : null}
+                ) : (
+                  <span className="bg-sky-400 text-sky-50 p-1 px-2 rounded-full">
+                    contains-gluten
+                  </span>
+                )}
               </span>{" "}
               <span>
                 {recipe.dairyFree ? (
