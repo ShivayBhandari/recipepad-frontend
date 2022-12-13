@@ -46,7 +46,7 @@ const Navbar = ({ saveCount }) => {
             Ingredient Search
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink
             end
             to="login"
@@ -55,7 +55,7 @@ const Navbar = ({ saveCount }) => {
           >
             Login
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink
             to="favourites"

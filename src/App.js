@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import RecipeSearch from "./components/pages/RecipeSearch";
 import IngredientRecipeSearch from "./components/pages/IngredientRecipeSearch";
-import Login from "./components/pages/Login";
+//import Login from "./components/pages/Login";
 import RecipeItem from "./components/RecipeItem";
 import Favourites from "./components/Favourites";
 import NotFound from "./components/pages/NotFound";
@@ -80,7 +80,7 @@ const App = () => {
             element={<Favourites savedItems={savedItems} />}
           />
 
-          <Route path="login" element={<Login />} />
+          {/* <Route path="login" element={<Login />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
