@@ -40,7 +40,7 @@ const IngredientRecipeSearch = () => {
     setIngredientStable2("");
 
     setTimeout(() => {
-      var url = `http://127.0.0.1:9000/recipesWithIngredients?ingredients=${ingredientSearchQuery}`;
+      var url = `https://recipepad-backend-app-gymds.ondigitalocean.app/recipesWithIngredients?ingredients=${ingredientSearchQuery}`;
       fetch(url)
         .then((res) => {
           if (!res.ok) throw new Error("Something went wrong!");

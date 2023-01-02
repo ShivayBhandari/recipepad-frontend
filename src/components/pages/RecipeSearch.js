@@ -40,7 +40,7 @@ const RecipeSearch = () => {
     setTimeout(() => {
       var url;
       if (searchQuery === "") {
-        url = "http://127.0.0.1:9000/recipesWithSearch";
+        url = "https://recipepad-backend-app-gymds.ondigitalocean.app/recipesWithSearch";
         fetch(url)
           .then((res) => {
             if (!res.ok) throw new Error("Something went wrong!");
@@ -53,7 +53,7 @@ const RecipeSearch = () => {
           })
           .catch((err) => setErrorMsg(err.message));
       } else {
-        url = `http://127.0.0.1:9000/recipesWithSearch?query=${searchQuery}`;
+        url = `https://recipepad-backend-app-gymds.ondigitalocean.app/recipesWithSearch?query=${searchQuery}`;
 
         fetch(url)
           .then((res) => {
@@ -69,7 +69,7 @@ const RecipeSearch = () => {
       }
     }, 500);
 
-    setSearchQuery("");
+    //setSearchQuery("");
   };
 
   return (

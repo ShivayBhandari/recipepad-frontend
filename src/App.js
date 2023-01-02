@@ -35,7 +35,9 @@ const App = () => {
   };
 
   const saveHandler = (id) => {
-    fetch(`http://127.0.0.1:9000/recipeInformation/${id}`)
+    fetch(
+      `https://recipepad-backend-app-gymds.ondigitalocean.app/recipeInformation/${id}`
+    )
       .then((res) => res.json())
       .then((data) => checkLocalData(data));
 
