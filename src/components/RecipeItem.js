@@ -23,7 +23,9 @@ const RecipeItem = ({ saveHandler, savedItems }) => {
     setRecipeNutrients("");
 
     setTimeout(() => {
-      fetch(`http://127.0.0.1:9000/recipeInformation/${id}`)
+      fetch(
+        `https://recipepad-backend-app-gymds.ondigitalocean.app/recipeInformation/${id}`
+      )
         .then((res) => {
           if (!res.ok)
             throw new Error(
@@ -37,7 +39,9 @@ const RecipeItem = ({ saveHandler, savedItems }) => {
         })
         .catch((err) => setErrorMsg(err.message));
 
-      fetch(`http://127.0.0.1:9000/recipeNutrients/${id}`)
+      fetch(
+        `https://recipepad-backend-app-gymds.ondigitalocean.app/recipeNutrients/${id}`
+      )
         .then((res) => {
           if (!res.ok)
             throw new Error("Something went wrong fetching recipe nutrients!");
